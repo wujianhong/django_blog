@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+    Movie
+{% endblock %}
+{% block script %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div role="main" class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="panel panel-default">
+
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><h2>Name</h2></th>
+                            <th><h2>Schedule</h2></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for movie in movie_list %}
+                            <tr>
+                                <td><h2>{{ movie.name }}</h2></td>
+                                <td><h2>{{ movie.schedule }}</h2></td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

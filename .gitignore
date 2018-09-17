@@ -1,0 +1,13 @@
+venv/
+.idea/
+*.pyc
+*.pyo
+*.xml
+*.iml
+t.py
+*.pkl
+*.log
+static/silk
+static/restframework
+static/admin
+tools/

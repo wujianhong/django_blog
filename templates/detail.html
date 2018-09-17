@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+{% block title %}
+    {{ blog_content.title }}
+{% endblock %}
+{% block script %}
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    <script data-require="bootstrap@3.1.1" data-semver="3.1.1"
+            src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script data-require="marked@*" data-semver="0.3.1" src="{% static 'bootstrap/js/marked.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap-markdown.js' %}"></script>
+
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet"
+          href="{% static 'bootstrap/css/bootstrap.min.css' %}"/>
+    <link data-require="fontawesome@4.1.0" data-semver="4.1.0" rel="stylesheet"
+          href="{% static 'bootstrap/css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-markdown.min.css" %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/detail.css' %}"/>
+    <script src="{% static 'bootstrap/js/detail.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/blog.css' %}">
+
+
+{% endblock %}
+
+{% block body %}
+    <div role="main" class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <h1>{{ blog_content.title }}</h1>
+                <p>{{ blog_content.category }}</p>
+                <p>{{ blog_content.date_time }}</p>
+                {#    <p>{{ blog_content.content }}</p>#}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <textarea id="comment-md" name="comment"
+                                  placeholder="Say something...">{{ blog_content.content }}</textarea>
+                        <br/>
+                        <div id="comment-md-preview-container">
+                            <div class="well well-sm well-light md-preview margin-top-10" id="comment-md-preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var str_list = new Array();
+    {% for context in blog_content.blog_context.all %}
+        var tmp = "{{  context.context }}";
+        str_list.push(tmp);
+    {% endfor %}
+
+    console.log(str_list);
+
+    </script>
+{% endblock %}
